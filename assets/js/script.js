@@ -41,6 +41,7 @@
 
   function initSmoothScroll(){
     if(prefersReduced || !window.Lenis || !hasGSAP) return;
+    if(!window.matchMedia('(min-width: 1025px) and (hover: hover) and (pointer: fine)').matches) return;
     const lenis = new Lenis({
       duration: 1.05,
       easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -146,6 +147,7 @@
     qsa('.reveal, .reveal-stagger').forEach(el => el.classList.add('in'));
     qsa('.reveal, .reveal-stagger, [data-reveal]').forEach(el => {
       if(el.closest('.hero') || el.dataset.gsapReveal === 'done') return;
+      if(el.classList.contains('service-panel')) return;
       el.dataset.gsapReveal = 'done';
       const mode = el.dataset.reveal || 'up';
       const fromVars = mode === 'left' ? {x:-60, y:0, scale:1} : mode === 'right' ? {x:60, y:0, scale:1} : mode === 'scale' ? {x:0, y:0, scale:.94} : {x:0, y:50, scale:1};
@@ -180,7 +182,9 @@
       .fromTo(buttons, {autoAlpha:0, y:26}, {autoAlpha:1, y:0, duration:.75, stagger:.08}, '-=.45')
       .fromTo(indicators, {autoAlpha:0, y:18}, {autoAlpha:1, y:0, duration:.72, stagger:.07}, '-=.3');
 
-    gsap.to(bg, {yPercent:8, ease:'none', scrollTrigger:{trigger:hero, start:'top top', end:'bottom top', scrub:1}});
+    if(window.matchMedia('(min-width: 769px) and (hover: hover)').matches){
+      gsap.to(bg, {yPercent:8, ease:'none', scrollTrigger:{trigger:hero, start:'top top', end:'bottom top', scrub:1}});
+    }
 
     if(isDesktopFine){
       hero.addEventListener('mousemove', event => {
@@ -213,7 +217,12 @@
 
   function initImageReveals(){
     if(!hasGSAP || prefersReduced) return;
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
     qsa('.about-service-collage img, .founder-media .media-frame, .service-panel .sp-media, .mason-item, .insta-item .media-frame').forEach((el, index) => {
+      if(isMobile && el.closest('.service-panel')) {
+        gsap.set(el, {clipPath:'inset(0% 0 0 0)', autoAlpha:1});
+        return;
+      }
       gsap.fromTo(el, {clipPath:'inset(100% 0 0 0)', autoAlpha:0}, {
         clipPath:'inset(0% 0 0 0)',
         autoAlpha:1,
@@ -233,9 +242,27 @@
     if(!track || !section) return;
     section.classList.add('services-motion-section');
     track.classList.add('services-motion-track');
-    if(!hasGSAP || prefersReduced) return;
 
-    gsap.matchMedia().add('(min-width: 901px)', () => {
+    const showPanels = () => {
+      panels.forEach(panel => {
+        panel.classList.add('in');
+        panel.dataset.gsapReveal = 'done';
+        if(hasGSAP) gsap.set(panel, {autoAlpha:1, x:0, y:0, clearProps:'transform'});
+      });
+      if(hasGSAP) gsap.set(track, {x:0, clearProps:'transform'});
+    };
+
+    if(!hasGSAP || prefersReduced){
+      showPanels();
+      return;
+    }
+
+    const mm = gsap.matchMedia();
+    mm.add('(max-width: 900px)', () => {
+      showPanels();
+      return () => {};
+    });
+    mm.add('(min-width: 901px)', () => {
       const totalMove = () => Math.max(0, track.scrollWidth - window.innerWidth + 80);
       const tween = gsap.to(track, {
         x:() => -totalMove(),
@@ -258,6 +285,11 @@
           scrollTrigger:{trigger:panel, containerAnimation:tween, start:'left 82%', once:true}
         });
       });
+      return () => {
+        if(tween.scrollTrigger) tween.scrollTrigger.kill();
+        tween.kill();
+        gsap.set(track, {clearProps:'transform'});
+      };
     });
   }
 
@@ -287,24 +319,53 @@
   }
 
   function initPortfolioCarousel(){
-    qsa('.masonry').forEach(grid => {
-      if(grid.id === 'pfGrid') return;
-      buildSwiper(grid, {
-        slidesPerView:1.1,
-        spaceBetween:18,
-        centeredSlides:true,
-        breakpoints:{768:{slidesPerView:2.15, spaceBetween:22}, 1200:{slidesPerView:2.65, spaceBetween:26}}
-      }, 'portfolio-swiper');
-    });
+    /* Use responsive CSS grid — avoids Swiper DOM glitches on resize */
   }
 
   function initInstagramCarousel(){
-    buildSwiper(qs('.insta-grid'), {
-      slidesPerView:'auto',
-      spaceBetween:18,
-      freeMode:{enabled:true, momentum:true},
-      centeredSlides:false
-    }, 'instagram-swiper');
+    /* Use responsive CSS grid — avoids Swiper DOM glitches on resize */
+  }
+
+  function initResponsiveHelpers(){
+    const mobileMenu = document.getElementById('mobileMenu');
+    const burgerBtn = document.getElementById('burgerBtn');
+    const desktopNav = window.matchMedia('(min-width: 981px)');
+
+    const closeMenuIfDesktop = () => {
+      if(desktopNav.matches && mobileMenu && mobileMenu.classList.contains('open')){
+        mobileMenu.classList.remove('open');
+        if(burgerBtn) burgerBtn.setAttribute('aria-expanded','false');
+        document.body.style.overflow = '';
+      }
+    };
+    desktopNav.addEventListener('change', closeMenuIfDesktop);
+
+    let resizeTimer;
+    const onResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        closeMenuIfDesktop();
+        if(window.ScrollTrigger) ScrollTrigger.refresh(true);
+      }, 180);
+    };
+    window.addEventListener('resize', onResize, {passive:true});
+    window.addEventListener('orientationchange', () => {
+      setTimeout(() => {
+        closeMenuIfDesktop();
+        if(window.ScrollTrigger) ScrollTrigger.refresh(true);
+      }, 320);
+    }, {passive:true});
+
+    setTimeout(() => {
+      qsa('.reveal, .reveal-stagger').forEach(el => {
+        const style = getComputedStyle(el);
+        const opacity = parseFloat(style.opacity);
+        if(opacity < 0.1 || style.visibility === 'hidden'){
+          el.classList.add('in');
+          if(window.gsap) gsap.set(el, {autoAlpha:1, x:0, y:0, clearProps:'transform'});
+        }
+      });
+    }, 2200);
   }
 
   function initFounderAnimations(){
@@ -327,7 +388,9 @@
       scrollTrigger:{trigger:section, start:'top 70%', once:true}
     });
     const img = media ? qs('img', media) : null;
-    if(img) gsap.to(img, {yPercent:4, ease:'none', scrollTrigger:{trigger:section, start:'top bottom', end:'bottom top', scrub:1}});
+    if(img && window.matchMedia('(min-width: 769px) and (hover: hover)').matches){
+      gsap.to(img, {yPercent:4, ease:'none', scrollTrigger:{trigger:section, start:'top bottom', end:'bottom top', scrub:1}});
+    }
   }
 
   function initReasonAnimations(){
@@ -462,31 +525,66 @@
     });
 
     function validateEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-    function validatePhone(v){ return /^[\d\s\-\+\(\)]{7,20}$/.test(v); }
 
     const form = document.getElementById('inquiryForm');
     if(form){
-      form.addEventListener('submit', event => {
+      const status = document.getElementById('formStatus');
+      const submitBtn = form.querySelector('button[type="submit"]');
+
+      form.addEventListener('submit', async event => {
         event.preventDefault();
         let valid = true;
         const setErr = (field, msg) => {
+          if(!field) return;
           const wrap = field.closest('.field');
           wrap.classList.toggle('invalid', !!msg);
           wrap.querySelector('.err-msg').textContent = msg || '';
           if(msg) valid = false;
         };
-        const name = form.fullName, email = form.email, phone = form.phone, service = form.service, msg = form.message;
+        const name = form.fullName;
+        const email = form.email;
+        const service = form.service;
+        const msg = form.message;
         setErr(name, name.value.trim() ? '' : 'Please enter your name.');
         setErr(email, email.value.trim() ? (validateEmail(email.value.trim()) ? '' : 'Enter a valid email address.') : 'Email is required.');
-        setErr(phone, phone.value.trim() ? (validatePhone(phone.value.trim()) ? '' : 'Enter a valid phone number.') : 'Phone number is required.');
         setErr(service, service.value ? '' : 'Please select a service.');
-        setErr(msg, msg.value.trim() ? '' : 'Tell us a little about your project.');
-        const status = document.getElementById('formStatus');
-        if(valid){
-          status.textContent = 'Thank you - your inquiry has been noted. We will be in touch soon.';
-          form.reset();
-        } else {
+        setErr(msg, msg.value.trim() ? '' : 'Tell us about your project.');
+        if(!valid){
           status.textContent = 'Please fix the highlighted fields.';
+          return;
+        }
+
+        status.textContent = 'Sending your inquiry…';
+        if(submitBtn) submitBtn.disabled = true;
+
+        try {
+          const payload = {
+            name: name.value.trim(),
+            email: email.value.trim(),
+            company: form.brand ? form.brand.value.trim() : '',
+            service: service.value,
+            budget: form.budget ? form.budget.value.trim() : '',
+            startDate: form.startDate ? form.startDate.value : '',
+            message: msg.value.trim(),
+            _subject: 'New Project Inquiry — KV Media House Website',
+            _template: 'table'
+          };
+          const response = await fetch('https://formsubmit.co/ajax/info@kvmediahouse.com', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await response.json().catch(() => ({}));
+          if(response.ok && (data.success === 'true' || data.success === true)){
+            status.textContent = 'Thank you — your inquiry has been sent. Our team will contact you soon.';
+            form.reset();
+          } else {
+            throw new Error('submit_failed');
+          }
+        } catch (err) {
+          status.textContent = 'Unable to send right now. Please email info@kvmediahouse.com directly.';
+        } finally {
+          if(submitBtn) submitBtn.disabled = false;
         }
       });
     }
@@ -520,5 +618,6 @@
   initServiceDetailPremium();
   initMagneticButtons();
   initFormsAndFilters();
+  initResponsiveHelpers();
   refreshAfterAssets();
 })();

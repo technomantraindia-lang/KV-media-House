@@ -1,1 +1,8 @@
-.vercel
+.DS_Store
+Thumbs.db
+*.lnk
+.env
+.env.*
+node_modules/
+.vercel/
+*.log
