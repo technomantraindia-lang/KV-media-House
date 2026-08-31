@@ -101,15 +101,18 @@ const pool = {
 };
 
 const services = [
-  ['content', 'reels-short-form-video', 'Reels & Short-Form Video', 'Fast-moving content designed to capture attention and keep people watching.', 'We create scroll-stopping short-form content built for modern audiences.', ['Concept Development', 'Vertical Production', 'Fast-Paced Editing', 'Platform Optimization'], ['Short-Form Hooks', 'Creator Reels', 'Product Reels', 'Trend Edits', 'Behind The Scenes', 'Launch Reels', 'Story Clips', 'Social Teasers'], 'social'],
+  ['content', 'brand-reels-short-form-video', 'Brand Reels & Short-Form Video', 'Scroll-stopping reels that turn your brand, products and ideas into content people remember.', 'We create brand reels, Instagram reels, vertical videos, product reels, service reels, promotional reels, lifestyle reels, and social content edits built for attention.', ['Creative Concepts', 'Vertical Production', 'Fast-Paced Editing', 'Platform Optimization'], ['Brand Reels', 'Instagram Reels', 'Short-Form Video', 'Vertical Video', 'Product Reels', 'Service Reels', 'Promotional Reels', 'Social Content Editing'], 'social'],
   ['content', 'professional-photography', 'Professional Photography', 'Premium photography that makes your brand feel clear, credible, and memorable.', 'We capture refined brand visuals with direction, detail, and polish.', ['Creative Direction', 'Shoot Planning', 'Professional Capture', 'Editing & Retouching'], ['Product Photography', 'Lifestyle Photography', 'Portraits', 'Restaurant Photography', 'Event Photography', 'Brand Shoots', 'Commercial Photography', 'Social Media Photography'], 'photo'],
+  ['content', 'product-photography', 'Product Photography', 'Professional product imagery designed to showcase details, quality and brand identity.', 'We create commercial product shoots, e-commerce images, lifestyle product photography, detail shots, campaign photography, and social-ready product content.', ['Creative Direction', 'Shoot Planning', 'Professional Capture', 'Editing & Retouching'], ['Commercial Product Shoots', 'E-commerce Product Images', 'Lifestyle Product Photography', 'Detail Shots', 'Campaign Photography', 'Social Media Product Content', 'Beauty Product Photography', 'Close-Up Commercial Photography'], 'product'],
   ['content', 'video-production', 'Video Production', 'Cinematic video production for brand stories, promos, events, and campaigns.', 'We produce polished video assets that bring your message to life.', ['Creative Treatment', 'Production Planning', 'Cinematic Filming', 'Edit & Delivery'], ['Brand Films', 'Product Videos', 'Interview Production', 'Promotional Films', 'Event Films', 'Social Video', 'Behind The Scenes', 'Lifestyle Video'], 'video'],
+  ['content', 'product-video-production', 'Product Video Production', 'Creative product videos that highlight features, tell your brand story and drive attention.', 'We produce product demonstration videos, commercial product films, product reels, feature highlight videos, lifestyle product films, launch videos, and social product videos.', ['Concept', 'Production', 'Product Storytelling', 'Editing & Delivery'], ['Product Demonstration Videos', 'Commercial Product Films', 'Product Reels', 'Feature Highlight Videos', 'Lifestyle Product Films', 'Launch Videos', 'Social Product Videos', 'Product Lighting Setups'], 'product'],
   ['content', 'creative-content-concepts', 'Creative Content Concepts', 'Original content ideas shaped around your audience, offer, and brand personality.', 'We turn rough ideas into strong creative directions your audience can feel.', ['Idea Mapping', 'Visual Direction', 'Campaign Angles', 'Content Storylines'], ['Concept Boards', 'Campaign Ideas', 'Creative Prompts', 'Brand Themes', 'Visual Directions', 'Story Angles', 'Launch Concepts', 'Series Ideas'], 'strategy'],
   ['content', 'social-media-content-ideas', 'Social Media Content Ideas', 'Fresh, practical ideas for posts, reels, stories, and campaigns.', 'We create content prompts and formats that make posting feel intentional.', ['Content Pillars', 'Post Concepts', 'Reel Ideas', 'Engagement Prompts'], ['Reel Concepts', 'Carousel Ideas', 'Story Prompts', 'Educational Posts', 'Engagement Posts', 'Product Ideas', 'Brand Moments', 'Monthly Themes'], 'social'],
   ['content', 'promotional-videos', 'Promotional Videos', 'Focused promotional videos that make your offer easy to understand and act on.', 'We create high-impact promotional content for launches, events, and campaigns.', ['Message Strategy', 'Script Direction', 'Video Production', 'Conversion Editing'], ['Launch Videos', 'Offer Promos', 'Service Videos', 'Social Ads', 'Event Promos', 'Product Spots', 'Campaign Clips', 'Brand Teasers'], 'video'],
   ['content', 'brand-storytelling', 'Brand Storytelling', 'Narrative-led content that helps people understand who you are and why you matter.', 'We craft stories that make your brand feel human, confident, and memorable.', ['Story Discovery', 'Narrative Direction', 'Visual Storytelling', 'Emotional Editing'], ['Founder Stories', 'Brand Films', 'Mission Videos', 'Customer Moments', 'Team Stories', 'Origin Stories', 'Campaign Narratives', 'Lifestyle Stories'], 'strategy'],
   ['content', 'product-service-content', 'Product & Service Content', 'Clear product and service visuals that help people see the value quickly.', 'We make your offer look polished, useful, and ready to buy.', ['Offer Positioning', 'Shot Lists', 'Product Capture', 'Benefit-Led Edits'], ['Product Shoots', 'Service Demos', 'Detail Shots', 'Process Clips', 'Launch Assets', 'Commercial Images', 'Offer Explainers', 'Social Product Content'], 'product'],
   ['content', 'lifestyle-event-content', 'Lifestyle & Event Content', 'Natural lifestyle and event content that gives your brand a lived-in presence.', 'We capture real moments with a polished editorial eye.', ['Mood Direction', 'Live Capture', 'Lifestyle Framing', 'Social Delivery'], ['Lifestyle Shoots', 'Event Moments', 'Creator Scenes', 'Brand Activations', 'Social Recaps', 'Candid Stories', 'Behind The Scenes', 'Community Content'], 'event'],
+  ['content', 'podcast-production', 'Podcast Production', 'Professional podcast content that turns meaningful conversations into stories worth sharing.', 'We produce podcast recordings, video podcasts, interview podcasts, multi-camera podcast production, audio editing, video editing, short social clips, podcast reels, and distribution-ready content.', ['Setup', 'Record', 'Edit', 'Repurpose'], ['Podcast Recording', 'Video Podcasts', 'Interview Podcasts', 'Multi-Camera Podcast Production', 'Audio Editing', 'Video Editing', 'Short Social Clips', 'Podcast Reels'], 'podcast'],
 
   ['social', 'instagram-management', 'Instagram Management', 'A polished Instagram presence managed with strategy, consistency, and care.', 'We keep your Instagram active, intentional, and aligned with your brand.', ['Profile Direction', 'Content Rhythm', 'Publishing Support', 'Engagement Review'], ['Feed Planning', 'Reels Calendar', 'Story Direction', 'Profile Polish', 'Caption Flow', 'Community Touchpoints', 'Content Review', 'Monthly Insights'], 'social'],
   ['social', 'content-planning', 'Content Planning', 'A clear content roadmap so your brand always knows what to say next.', 'We plan content with purpose before the production begins.', ['Content Pillars', 'Monthly Themes', 'Campaign Mapping', 'Posting Rhythm'], ['Monthly Plans', 'Campaign Calendars', 'Content Pillars', 'Reel Themes', 'Story Ideas', 'Launch Planning', 'Seasonal Content', 'Creative Roadmaps'], 'strategy'],
@@ -119,20 +122,24 @@ const services = [
   ['social', 'community-management', 'Community Management', 'Thoughtful community support that helps your audience feel seen and answered.', 'We help manage the everyday interactions that build brand trust.', ['Inbox Review', 'Comment Support', 'Engagement Prompts', 'Tone Guidance'], ['Comment Care', 'Message Support', 'Engagement Checks', 'Audience Questions', 'Community Moments', 'Response Direction', 'Social Listening', 'Trust Building'], 'social'],
   ['social', 'audience-engagement', 'Audience Engagement', 'Social engagement designed to strengthen connection and encourage conversation.', 'We create ways for your audience to respond, share, and stay involved.', ['Engagement Strategy', 'Interactive Stories', 'Community Prompts', 'Response Review'], ['Poll Ideas', 'Story Questions', 'Comment Prompts', 'Audience Research', 'Engagement Posts', 'Conversation Starters', 'Community Stories', 'Response Loops'], 'social'],
   ['social', 'social-media-strategy', 'Social Media Strategy', 'A focused social strategy built around audience, goals, and measurable direction.', 'We create the plan behind the content so every post has a reason.', ['Brand Audit', 'Audience Planning', 'Content Direction', 'Performance Review'], ['Brand Audits', 'Platform Strategy', 'Content Pillars', 'Audience Maps', 'Campaign Direction', 'Growth Plans', 'Competitive Review', 'Performance Notes'], 'strategy'],
+  ['social', 'social-media-campaigns', 'Social Media Campaigns', 'Strategic content campaigns designed to build attention, engagement and brand presence.', 'We execute campaign content, reel campaigns, brand launch campaigns, promotional campaigns, seasonal campaigns, audience engagement, scheduling, and performance tracking.', ['Plan', 'Create', 'Launch', 'Optimize'], ['Campaign Planning', 'Campaign Content', 'Reel Campaigns', 'Brand Launch Campaigns', 'Promotional Campaigns', 'Seasonal Campaigns', 'Audience Engagement', 'Campaign Scheduling'], 'social'],
   ['social', 'performance-reach-tracking', 'Performance & Reach Tracking', 'Clear performance tracking that shows what content is working and why.', 'We translate social metrics into practical creative decisions.', ['Reach Review', 'Content Insights', 'Trend Checks', 'Optimization Notes'], ['Reach Reports', 'Engagement Trends', 'Top Posts', 'Audience Growth', 'Story Metrics', 'Reel Performance', 'Insight Reviews', 'Next Steps'], 'strategy'],
   ['social', 'monthly-analytics-reporting', 'Monthly Analytics & Reporting', 'Premium monthly reporting that turns numbers into next-step strategy.', 'We package your performance data into clear, useful reporting.', ['Data Review', 'Report Design', 'Insight Summary', 'Action Planning'], ['Monthly Reports', 'KPI Snapshots', 'Audience Insights', 'Campaign Results', 'Content Winners', 'Growth Tracking', 'Reach Analysis', 'Strategy Notes'], 'strategy'],
 
+  ['digital', 'brand-business-strategy', 'Brand & Business Strategy', 'Creative strategies that strengthen your presence, sharpen your message and drive growth.', 'We shape brand positioning, messaging strategy, audience direction, campaign direction, content strategy, growth planning, market presence, and promotional planning.', ['Discover', 'Position', 'Plan', 'Grow'], ['Brand Positioning', 'Messaging Strategy', 'Audience Direction', 'Campaign Direction', 'Content Strategy', 'Growth Planning', 'Market Presence', 'Promotional Planning'], 'strategy'],
+  ['digital', 'business-promotion-brand-visibility', 'Business Promotion & Brand Visibility', 'Purpose-driven content that puts your business in front of the right audience.', 'We build business promotions, local campaigns, promotional content, brand awareness, social promotions, launch promotions, offer campaigns, and service promotions.', ['Understand', 'Position', 'Promote', 'Amplify'], ['Business Promotions', 'Local Business Campaigns', 'Promotional Content', 'Brand Awareness', 'Social Promotions', 'Launch Promotions', 'Offer Campaigns', 'Service Promotions'], 'event'],
   ['digital', 'brand-campaigns', 'Brand Campaigns', 'Campaigns that bring your message, visuals, and audience strategy together.', 'We build campaigns that make your brand feel coordinated and memorable.', ['Campaign Strategy', 'Creative Direction', 'Asset Planning', 'Launch Support'], ['Brand Launches', 'Campaign Concepts', 'Creative Assets', 'Audience Messaging', 'Social Campaigns', 'Offer Campaigns', 'Awareness Pushes', 'Content Rollouts'], 'strategy'],
   ['digital', 'influencer-marketing', 'Influencer Marketing', 'Creator partnerships planned to feel authentic, aligned, and effective.', 'We help brands work with influencers in a way that feels natural and useful.', ['Creator Fit', 'Campaign Briefs', 'Content Direction', 'Performance Review'], ['Creator Campaigns', 'Influencer Briefs', 'Lifestyle Posts', 'Product Features', 'Collab Reels', 'Brand Mentions', 'Campaign Tracking', 'Social Proof'], 'social'],
   ['digital', 'creator-collaborations', 'Creator Collaborations', 'Collaborative content that connects your brand with the right creator voices.', 'We shape creator collaborations that look polished without feeling forced.', ['Collab Planning', 'Creative Briefs', 'Shot Direction', 'Content Review'], ['Creator Shoots', 'Collab Reels', 'Brand Features', 'Lifestyle Clips', 'UGC Direction', 'Partner Posts', 'Campaign Assets', 'Social Stories'], 'social'],
   ['digital', 'digital-advertising', 'Digital Advertising', 'Digital ads built with strong creative, clear targeting, and useful reporting.', 'We create ad campaigns designed to reach the right people with the right message.', ['Audience Research', 'Ad Creative', 'Campaign Setup', 'Optimization'], ['Social Ads', 'Creative Testing', 'Awareness Ads', 'Local Ads', 'Lead Campaigns', 'Offer Ads', 'Retargeting Creative', 'Ad Reports'], 'strategy'],
+  ['digital', 'sponsored-content', 'Sponsored Content', 'Authentic branded content that connects products and partnerships with the right audience.', 'We create brand partnerships, sponsored reels, creator collaborations, sponsored videos, product integrations, campaign content, event sponsor content, and social partnership content.', ['Partnership Brief', 'Creative Concept', 'Production', 'Distribution'], ['Brand Partnerships', 'Sponsored Reels', 'Creator Collaborations', 'Sponsored Videos', 'Product Integrations', 'Campaign Content', 'Event Sponsor Content', 'Social Partnership Content'], 'product'],
   ['digital', 'promotional-campaigns', 'Promotional Campaigns', 'Focused promotions that make launches, offers, and events stand out.', 'We plan promotional moments with clear messaging and attractive visuals.', ['Offer Strategy', 'Promo Assets', 'Campaign Timing', 'Launch Review'], ['Offer Launches', 'Promo Videos', 'Social Pushes', 'Email Graphics', 'Event Promos', 'Countdown Assets', 'Launch Reels', 'Campaign Recaps'], 'product'],
   ['digital', 'social-media-campaign-strategy', 'Social Media Campaign Strategy', 'Campaign strategy that turns social content into a coordinated push.', 'We map messaging, timing, and content so campaigns feel connected.', ['Campaign Goals', 'Content Mapping', 'Platform Strategy', 'Performance Review'], ['Campaign Maps', 'Content Timelines', 'Ad Concepts', 'Launch Posts', 'Story Sequences', 'Audience Angles', 'Creative Testing', 'Result Reviews'], 'strategy'],
   ['digital', 'brand-awareness-campaigns', 'Brand Awareness Campaigns', 'Awareness campaigns that help more of the right people recognize your brand.', 'We create visibility campaigns with memorable visuals and clear positioning.', ['Audience Positioning', 'Awareness Creative', 'Channel Planning', 'Reach Review'], ['Awareness Videos', 'Brand Graphics', 'Social Ads', 'Lifestyle Creative', 'Reach Campaigns', 'Founder Features', 'Community Content', 'Campaign Reports'], 'social'],
   ['digital', 'local-business-marketing', 'Local Business Marketing', 'Marketing support for local brands that need visibility, trust, and repeat attention.', 'We help local businesses show up consistently and look professional online.', ['Local Positioning', 'Offer Messaging', 'Content Planning', 'Promotion Support'], ['Local Campaigns', 'Restaurant Content', 'Service Promotions', 'Community Posts', 'Google Assets', 'Social Ads', 'Offer Reels', 'Monthly Promotions'], 'event'],
   ['digital', 'campaign-content-creation', 'Campaign Content Creation', 'Campaign-ready content packages created around one clear marketing goal.', 'We produce the assets a campaign needs to feel complete from launch to follow-up.', ['Campaign Concept', 'Asset Production', 'Content Variations', 'Delivery Prep'], ['Campaign Videos', 'Social Graphics', 'Promo Photos', 'Ad Creative', 'Story Sets', 'Launch Assets', 'Recap Content', 'Retargeting Assets'], 'video'],
 
-  ['event', 'event-coverage', 'Event Coverage', 'Complete event coverage that captures atmosphere, details, people, and story.', 'We document your event with the eye of a storyteller and the pace of a media team.', ['Coverage Plan', 'On-Site Capture', 'Moment Selection', 'Recap Delivery'], ['Event Highlights', 'Venue Details', 'Guest Moments', 'Speaker Coverage', 'Social Recaps', 'Sponsor Moments', 'Candid Photos', 'Aftermovie Clips'], 'event'],
+  ['event', 'event-coverage', 'Event Coverage', 'Capturing your event’s energy and key moments through engaging video content.', 'We cover event videography, event photography, event reels, live social content, guest interviews, sponsor content, behind-the-scenes coverage, highlight videos, and post-event content.', ['Plan', 'Capture', 'Edit', 'Deliver'], ['Event Videography', 'Event Photography', 'Event Reels', 'Live Social Content', 'Guest Interviews', 'Sponsor Content', 'Behind-the-Scenes Coverage', 'Highlight Videos'], 'event'],
   ['event', 'event-photography', 'Event Photography', 'Polished event photography that preserves the energy and important details.', 'We capture the people, moments, and setting that make your event feel alive.', ['Shot Planning', 'Guest Capture', 'Detail Photography', 'Edited Gallery'], ['Guest Photos', 'Stage Moments', 'Venue Details', 'Sponsor Photos', 'Candid Coverage', 'Group Photos', 'Brand Activations', 'Social Edits'], 'photo'],
   ['event', 'event-videography', 'Event Videography', 'Professional event video that turns live moments into lasting promotional assets.', 'We film events with cinematic movement, clean audio, and strong story flow.', ['Run-Of-Show Planning', 'Live Filming', 'Audio Capture', 'Recap Editing'], ['Event Films', 'Highlight Reels', 'Speaker Clips', 'Sponsor Videos', 'Crowd Energy', 'Behind The Scenes', 'Social Cuts', 'Recap Videos'], 'video'],
   ['event', 'sponsor-videos', 'Sponsor Videos', 'Sponsor-focused videos that showcase value, visibility, and partnership moments.', 'We create sponsor content that feels polished, appreciative, and useful after the event.', ['Sponsor Goals', 'Brand Capture', 'Interview Clips', 'Delivery Formats'], ['Sponsor Recaps', 'Brand Booths', 'Partner Interviews', 'Activation Clips', 'Logo Moments', 'Event Mentions', 'Social Sponsor Cuts', 'Thank You Videos'], 'event'],
@@ -144,6 +151,27 @@ const services = [
   ['event', 'podcast-interview-content', 'Podcast / Interview Content', 'Podcast and interview content captured with clean audio, strong framing, and clear story.', 'We produce interview media that feels credible, intimate, and ready to share.', ['Interview Planning', 'Audio Setup', 'Camera Framing', 'Clip Packaging'], ['Podcast Episodes', 'Interview Clips', 'Audio Snippets', 'Guest Features', 'Social Quotes', 'Long-Form Edits', 'Teaser Clips', 'Conversation Highlights'], 'podcast'],
   ['event', 'post-event-promotional-content', 'Post-Event Promotional Content', 'Post-event content that extends the value of your event after it ends.', 'We turn captured moments into promotional assets for the next announcement.', ['Asset Review', 'Recap Story', 'Promo Editing', 'Launch Prep'], ['Recap Films', 'Thank You Posts', 'Sponsor Highlights', 'Next Event Teasers', 'Photo Galleries', 'Social Clips', 'Campaign Recaps', 'Promo Assets'], 'event']
 ];
+
+const related = {
+  'brand-reels-short-form-video': ['video-production', 'social-media-content-ideas', 'product-video-production'],
+  'product-photography': ['product-service-content', 'professional-photography', 'product-video-production'],
+  'product-video-production': ['video-production', 'product-photography', 'promotional-videos'],
+  'podcast-production': ['video-production', 'artist-guest-interviews', 'social-media-content-ideas'],
+  'social-media-campaigns': ['social-media-strategy', 'content-planning', 'audience-engagement'],
+  'brand-business-strategy': ['brand-campaigns', 'social-media-campaign-strategy', 'business-promotion-brand-visibility'],
+  'business-promotion-brand-visibility': ['local-business-marketing', 'brand-awareness-campaigns', 'campaign-content-creation'],
+  'sponsored-content': ['influencer-marketing', 'creator-collaborations', 'brand-campaigns'],
+  'event-coverage': ['event-videography', 'event-photography', 'event-reels']
+};
+
+function findService(slug, parentKey) {
+  return services.find(service => service[1] === slug && (!parentKey || service[0] === parentKey))
+    || services.find(service => service[1] === slug);
+}
+
+function serviceHref(service, prefix) {
+  return `${prefix}services/${parents[service[0]].slug}/${service[1]}.html`;
+}
 
 function esc(value) {
   return String(value)
@@ -167,6 +195,20 @@ function imageFor(service, index, wide = false) {
   return images[index % images.length].replace('w=1200', wide ? 'w=1600' : 'w=1200');
 }
 
+function relatedCards(service, prefix) {
+  const fallback = services.filter(item => item[0] === service[0] && item[1] !== service[1]).slice(0, 3);
+  const items = (related[service[1]] || fallback.map(item => item[1]))
+    .map(slug => findService(slug, service[0]) || findService(slug))
+    .filter(Boolean)
+    .filter(item => item[1] !== service[1])
+    .slice(0, 3);
+
+  return items.map((item, index) => `<a href="${serviceHref(item, prefix)}" class="related-card">
+          <img src="${imageFor(item, index + 1, true)}" alt="${esc(item[2])}" loading="lazy" onerror="this.style.display='none'">
+          <span class="rc-inner"><span class="rc-cat">${esc(parents[item[0]].title)}</span><span class="rc-title">${esc(item[2])}</span></span>
+        </a>`).join('\n        ');
+}
+
 function featureCopy(title, feature) {
   const lower = title.toLowerCase();
   if (/analytics|tracking|reporting/.test(lower)) return `Clear ${feature.toLowerCase()} that turns performance into better decisions.`;
@@ -181,7 +223,7 @@ function header(prefix) {
 <header class="site-header" id="siteHeader">
   <div class="wrap header-inner">
     <a href="${prefix}index.html" class="logo-row">
-      <img src="${prefix}assets/images/logo-final-header.png" alt="KV Media House logo" class="logo-mark">
+      <img src="${prefix}assets/images/logo-final-header.png" alt="KV Media House logo" class="site-logo logo-mark">
       <span class="logo-text"><span class="kv">KV</span><span class="mh">MEDIA HOUSE</span></span>
     </a>
     <nav class="desktop-nav" aria-label="Primary">
@@ -194,7 +236,7 @@ function header(prefix) {
             <div class="mega-col">
               <h6>01 - Content</h6>
               <a href="../content-creation.html" class="mega-parent">Content Creation</a>
-              <a href="../content-creation/reels-short-form-video.html" class="mega-child">Reels & Short-Form Video</a>
+              <a href="../content-creation/brand-reels-short-form-video.html" class="mega-child">Brand Reels & Short-Form Video</a>
               <a href="../content-creation/professional-photography.html" class="mega-child">Professional Photography</a>
               <a href="../content-creation/video-production.html" class="mega-child">Video Production</a>
               <a href="../content-creation/creative-content-concepts.html" class="mega-child">Creative Content Concepts</a>
@@ -210,7 +252,7 @@ function header(prefix) {
             <div class="mega-col">
               <h6>03 - Digital</h6>
               <a href="../digital-marketing.html" class="mega-parent">Digital Marketing</a>
-              <a href="../digital-marketing/brand-campaigns.html" class="mega-child">Brand Campaigns</a>
+              <a href="../digital-marketing/brand-business-strategy.html" class="mega-child">Brand & Business Strategy</a>
               <a href="../digital-marketing/influencer-marketing.html" class="mega-child">Influencer Marketing</a>
               <a href="../digital-marketing/creator-collaborations.html" class="mega-child">Creator Collaborations</a>
               <a href="../digital-marketing/digital-advertising.html" class="mega-child">Digital Advertising</a>
@@ -239,7 +281,7 @@ function header(prefix) {
 </header>
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-top wrap" style="padding:0;">
-    <span class="logo-row"><img src="${prefix}assets/images/logo-final-header.png" alt="KV Media House logo" class="logo-mark"><span class="logo-text"><span class="kv">KV</span><span class="mh">MEDIA HOUSE</span></span></span>
+    <span class="logo-row"><img src="${prefix}assets/images/logo-final-header.png" alt="KV Media House logo" class="site-logo logo-mark"><span class="logo-text"><span class="kv">KV</span><span class="mh">MEDIA HOUSE</span></span></span>
     <button class="close-btn" id="closeMenuBtn">Close</button>
   </div>
   <nav class="wrap" style="padding:0; overflow-y:auto;">
@@ -316,8 +358,9 @@ function page(service) {
           <h3>${esc(feature)}</h3>
           <p>${esc(featureCopy(title, feature))}</p>
         </article>`).join('\n        ');
-  const processCards = parent.process.map((step, index) => `<article><span>${String(index + 1).padStart(2, '0')}</span><h3>${esc(step[0])}</h3><p>${esc(step[1])}</p></article>`).join('\n        ');
+  const processCards = features.map((step, index) => `<article><span>${String(index + 1).padStart(2, '0')}</span><h3>${esc(step)}</h3><p>${esc(parent.process[index] ? parent.process[index][1] : featureCopy(title, step))}</p></article>`).join('\n        ');
   const tools = parent.tools.map(tool => `<span>${esc(tool)}</span>`).join('\n        ');
+  const relatedMarkup = relatedCards(service, prefix);
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -416,6 +459,18 @@ ${header(prefix)}
       </div>
       <div class="sd-tool-row reveal-stagger" aria-label="Tools">
         ${tools}
+      </div>
+    </div>
+  </section>
+
+  <section class="sd-section">
+    <div class="wrap">
+      <div class="sd-centered-heading reveal">
+        <span class="sd-kicker">Related Services</span>
+        <h2>Explore connected <em>services.</em></h2>
+      </div>
+      <div class="related-grid reveal">
+        ${relatedMarkup}
       </div>
     </div>
   </section>
