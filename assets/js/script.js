@@ -458,7 +458,9 @@
       const heroItems = qsa('.sd-breadcrumb, .sd-hero h1, .sd-title-rule, .sd-hero-copy p, .sd-hero-actions, .sd-hero-ticks, .sd-hero-card', hero);
       if(bg){
         gsap.fromTo(bg, {scale:1.08, autoAlpha:.76}, {scale:1, autoAlpha:1, duration:1.5, ease:'expo.out'});
-        gsap.to(bg, {scale:1.06, yPercent:5, ease:'none', scrollTrigger:{trigger:hero, start:'top top', end:'bottom top', scrub:1}});
+        if(window.matchMedia('(min-width: 901px) and (hover: hover) and (pointer: fine)').matches){
+          gsap.to(bg, {scale:1.06, yPercent:5, ease:'none', scrollTrigger:{trigger:hero, start:'top top', end:'bottom top', scrub:1}});
+        }
       }
       gsap.fromTo(heroItems, {autoAlpha:0, y:34}, {autoAlpha:1, y:0, duration:.95, ease:'power3.out', stagger:.08, delay:.18});
     }
