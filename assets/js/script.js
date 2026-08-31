@@ -657,7 +657,10 @@
             startDate: form.startDate ? form.startDate.value : '',
             message: msg.value.trim(),
             _subject: 'New Project Inquiry — KV Media House Website',
-            _template: 'table'
+            _template: 'table',
+            _captcha: 'false',
+            _replyto: email.value.trim(),
+            _autoresponse: `Hi ${name.value.trim()}, thank you for contacting KV Media House. We have received your inquiry and our team will review your project details soon. You can also reach us directly at info@kvmediahouse.com.`
           };
           const response = await fetch('https://formsubmit.co/ajax/info@kvmediahouse.com', {
             method: 'POST',
