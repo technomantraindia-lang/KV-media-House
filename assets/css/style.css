@@ -1296,11 +1296,13 @@ footer::after{
 }
 .about-hero-grid{
   display:grid;
-  grid-template-columns:minmax(0, 1.02fr) minmax(360px, .78fr);
-  gap:76px;
+  grid-template-columns:minmax(0, 1fr);
+  gap:0;
   align-items:center;
+  justify-items:center;
+  text-align:center;
 }
-.about-hero-copy{max-width:780px;}
+.about-hero-copy{max-width:980px;}
 .about-hero-copy .eyebrow{margin-bottom:26px;}
 .about-hero-copy h1{
   font-size:clamp(54px,7vw,112px);
@@ -1310,11 +1312,13 @@ footer::after{
 .about-hero-copy h1 i{color:var(--color-bronze-soft);}
 .about-hero-copy p{
   max-width:610px;
+  margin-left:auto;
+  margin-right:auto;
   margin-top:30px;
   color:rgba(243,239,231,.74);
   font-size:18px;
 }
-.about-hero-actions{display:flex; gap:16px; flex-wrap:wrap; margin-top:38px;}
+.about-hero-actions{display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:38px;}
 .about-hero-media{
   position:relative;
   min-height:560px;
