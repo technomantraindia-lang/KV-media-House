@@ -8,6 +8,79 @@
 
   if(hasGSAP) gsap.registerPlugin(ScrollTrigger);
 
+  function initPreloader(){
+    const scriptSrc = document.currentScript ? document.currentScript.getAttribute('src') || '' : '';
+    const assetBase = scriptSrc.replace(/assets\/js\/script\.js.*$/i, 'assets/');
+    const loader = document.createElement('div');
+    loader.className = 'kv-preloader';
+    loader.setAttribute('role', 'status');
+    loader.setAttribute('aria-label', 'Loading KV Media House');
+    loader.innerHTML = `
+      <div class="kv-preloader-bg" aria-hidden="true"></div>
+      <div class="kv-preloader-stage">
+        <span class="kv-preloader-orbit" aria-hidden="true"></span>
+        <span class="kv-preloader-spark spark-one" aria-hidden="true"></span>
+        <span class="kv-preloader-spark spark-two" aria-hidden="true"></span>
+        <span class="kv-preloader-spark spark-three" aria-hidden="true"></span>
+        <div class="kv-preloader-logo-shell">
+          <img src="${assetBase}images/logo-final-header.png" alt="KV Media House logo" class="kv-preloader-logo">
+          <span class="kv-preloader-shine" aria-hidden="true"></span>
+        </div>
+        <div class="kv-preloader-wordmark" aria-hidden="true">
+          <span>KV</span>
+          <small>MEDIA HOUSE</small>
+        </div>
+        <span class="kv-preloader-line" aria-hidden="true"><i></i></span>
+      </div>
+    `;
+    document.body.prepend(loader);
+    document.body.classList.add('kv-preloader-lock');
+
+    const finish = () => {
+      if(loader.dataset.done === 'true') return;
+      loader.dataset.done = 'true';
+      const release = () => {
+        document.body.classList.remove('kv-preloader-lock');
+        loader.remove();
+        if(window.ScrollTrigger) ScrollTrigger.refresh(true);
+      };
+      if(hasGSAP && !prefersReduced){
+        gsap.timeline({onComplete:release})
+          .to('.kv-preloader-line i', {scaleX:1, duration:.32, ease:'power2.inOut'})
+          .to(loader, {autoAlpha:0, duration:.72, ease:'power3.inOut'}, '+=.12')
+          .to('.page-fade', {autoAlpha:1, y:0, duration:.01}, '<');
+      } else {
+        loader.classList.add('is-hidden');
+        window.setTimeout(release, prefersReduced ? 80 : 520);
+      }
+    };
+
+    if(hasGSAP && !prefersReduced){
+      const logo = loader.querySelector('.kv-preloader-logo');
+      const tl = gsap.timeline({defaults:{ease:'power3.out'}});
+      tl.set('.page-fade', {autoAlpha:0, y:14})
+        .fromTo(loader, {autoAlpha:0}, {autoAlpha:1, duration:.18})
+        .fromTo('.kv-preloader-logo-shell', {scale:.78, rotation:-4, autoAlpha:0}, {scale:1, rotation:0, autoAlpha:1, duration:.95, ease:'expo.out'}, '-=.02')
+        .fromTo('.kv-preloader-orbit', {scale:.72, rotation:-36, autoAlpha:0}, {scale:1, rotation:0, autoAlpha:1, duration:1.1, ease:'expo.out'}, '-=.74')
+        .fromTo('.kv-preloader-wordmark span, .kv-preloader-wordmark small', {y:16, autoAlpha:0}, {y:0, autoAlpha:1, duration:.62, stagger:.08}, '-=.48')
+        .fromTo('.kv-preloader-line i', {scaleX:0}, {scaleX:.72, duration:1.05, ease:'power2.inOut'}, '-=.62')
+        .fromTo('.kv-preloader-spark', {scale:0, autoAlpha:0}, {scale:1, autoAlpha:1, duration:.5, stagger:.08, ease:'back.out(2)'}, '-=.8');
+      gsap.to(logo, {filter:'drop-shadow(0 0 24px rgba(195,167,125,.6)) drop-shadow(0 20px 48px rgba(0,0,0,.75))', duration:1.1, yoyo:true, repeat:-1, ease:'sine.inOut'});
+      gsap.to('.kv-preloader-orbit', {rotation:360, duration:4.8, repeat:-1, ease:'none'});
+      gsap.to('.kv-preloader-shine', {xPercent:240, duration:1.55, repeat:-1, repeatDelay:.4, ease:'power2.inOut'});
+    }
+
+    const loaded = document.readyState === 'complete'
+      ? Promise.resolve()
+      : new Promise(resolve => window.addEventListener('load', resolve, {once:true}));
+    const minimum = new Promise(resolve => window.setTimeout(resolve, prefersReduced ? 250 : 1650));
+    const maximum = window.setTimeout(finish, prefersReduced ? 1200 : 3600);
+    Promise.all([loaded, minimum]).then(() => {
+      window.clearTimeout(maximum);
+      finish();
+    });
+  }
+
   function initHeader(){
     const header = document.getElementById('siteHeader');
     if(header){
@@ -616,6 +689,7 @@
     window.addEventListener('load', () => ScrollTrigger.refresh());
   }
 
+  initPreloader();
   initHeader();
   initSmoothScroll();
   initScrollProgress();
