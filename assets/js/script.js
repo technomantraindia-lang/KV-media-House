@@ -331,54 +331,12 @@
     section.classList.add('services-motion-section');
     track.classList.add('services-motion-track');
 
-    const showPanels = () => {
-      panels.forEach(panel => {
-        panel.classList.add('in');
-        panel.dataset.gsapReveal = 'done';
-        if(hasGSAP) gsap.set(panel, {autoAlpha:1, x:0, y:0, clearProps:'transform'});
-      });
-      if(hasGSAP) gsap.set(track, {x:0, clearProps:'transform'});
-    };
-
-    if(!hasGSAP || prefersReduced){
-      showPanels();
-      return;
-    }
-
-    const mm = gsap.matchMedia();
-    mm.add('(max-width: 900px)', () => {
-      showPanels();
-      return () => {};
+    panels.forEach(panel => {
+      panel.classList.add('in');
+      panel.dataset.gsapReveal = 'done';
+      if(hasGSAP) gsap.set(panel, {autoAlpha:1, x:0, y:0, clearProps:'transform'});
     });
-    mm.add('(min-width: 901px)', () => {
-      const totalMove = () => Math.max(0, track.scrollWidth - window.innerWidth + 80);
-      const tween = gsap.to(track, {
-        x:() => -totalMove(),
-        ease:'none',
-        scrollTrigger:{
-          trigger:section,
-          pin:true,
-          scrub:1,
-          start:'top top',
-          end:() => `+=${totalMove() + window.innerHeight * .7}`,
-          invalidateOnRefresh:true
-        }
-      });
-      panels.forEach(panel => {
-        gsap.fromTo(panel, {autoAlpha:.55, y:50}, {
-          autoAlpha:1,
-          y:0,
-          duration:.9,
-          ease:'power3.out',
-          scrollTrigger:{trigger:panel, containerAnimation:tween, start:'left 82%', once:true}
-        });
-      });
-      return () => {
-        if(tween.scrollTrigger) tween.scrollTrigger.kill();
-        tween.kill();
-        gsap.set(track, {clearProps:'transform'});
-      };
-    });
+    if(hasGSAP) gsap.set(track, {x:0, clearProps:'transform'});
   }
 
   function buildSwiper(container, options, modifierClass){
